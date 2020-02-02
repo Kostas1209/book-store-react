@@ -3,6 +3,12 @@ import React from "react";
 import { BookCatalogState } from "../types/BookCatalogState";
 import { Book } from "../types/Book";
 import "../styles/Book.scss";
+import { reserveBook } from "../redux/BookCatalog/actions";
+
+interface BookComponentProps{
+    book: Book,
+    dispatch: any
+}
 
 export class BookCatalogComponent extends React.Component {
     
@@ -11,8 +17,9 @@ export class BookCatalogComponent extends React.Component {
         books: []
     } 
 
-    constructor(props: Readonly<{}>){
+    constructor(props: BookComponentProps){
         super(props);
+        console.log("props" + props);
         this.sendGetRequest()
     }
 
@@ -30,26 +37,45 @@ export class BookCatalogComponent extends React.Component {
         return(
             <div>
                 <ul>
+
                     {this.state.books.map(book =>
-                     <BookComponent  key={book.id}
-                         {...book}/>
-                        )}
-                   
+                    <BookComponent  key={book.id}
+                        {...book}/>
+                    )}
                 </ul>
             </div>
         );
     }
 };
 
-const BookComponent = (book: Book) => {
-    return (
+export class BookComponent extends React.Component {
+
+    private amount: number;
+
+    constructor(props : any){
+        super(props);
+        console.log(props)
+        this.amount = 0;
+        
+    }
+    private Handle = (e:any)=>{
+        this.amount= e.target.value;
+    }
+
+    render (){
+        return (
         <div className="block2">
-            <div className="block1">
-                <p>title:   {book.title}</p>
-                <p>author:  {book.author}</p>
-                <p>price:   {book.price}</p>
-                <p>balance: {book.amount_in_storage}</p>
+            {/* <div className="block1">
+                <p>title:   {this.props.book.title}</p>
+                <p>author:  {this.props.book.author}</p>
+                <p>price:   {this.props.book.price}</p>
+                <p>balance: {this.props.book.amount_in_storage}</p>
             </div>
+            <input type="number" id="amountOfOrder" onChange={this.Handle}/>
+            <button onClick={()=> this.props.dispatch(reserveBook(this.props.book, this.amount))}>Reserve</button>  */}
         </div>
-    );
+        );
+    }
+    
 }
+
