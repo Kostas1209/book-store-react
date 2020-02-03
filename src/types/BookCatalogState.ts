@@ -1,6 +1,15 @@
 import { Book } from './Book'  
 
 export interface BookCatalogState {
-    error: string;
+    //error: string;
     books: Book[]
   }
+
+export interface UserBasketItem {
+    book: Book,
+    amount: number
+}
+
+export interface UserBasketState{
+    UserBooks: UserBasketItem []
+}

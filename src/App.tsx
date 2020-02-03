@@ -2,12 +2,15 @@ import React from 'react';
 import './App.css';
 import { BookCatalogComponent } from './components/BooksCatalog';
 
-const App: React.FC = () => {
-  return (
-    <div>
-      <BookCatalogComponent />
-    </div>
-  );
+
+export class App extends React.Component {
+
+  render()
+  {
+     return(
+       <BookCatalogComponent />   /// fucking error
+     )
+  }
 }
 
 export default App;

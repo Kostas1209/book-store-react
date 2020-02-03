@@ -1,19 +1,26 @@
-import React from "react";
+import React, { Dispatch } from "react";
 
-import { BookCatalogState } from "../types/BookCatalogState";
-import { Book } from "../types/Book";
+import { BookCatalogState, UserBasketItem, UserBasketState } from "../types/BookCatalogState";
 import "../styles/Book.scss";
+import { Book } from "../types/Book";
 
-export class BookCatalogComponent extends React.Component {
+
+interface BookComponentProps{ 
+    UserBooks?: UserBasketState,
+    reserve: (book: Book, amount: number) => Object  
+}
+
+export class BookCatalogComponent extends React.Component<BookComponentProps, {}> {
     
     state: BookCatalogState = {
-        error: "",
         books: []
     } 
+    private amount: number = 0;
 
-    constructor(props: Readonly<{}>){
-        super(props);
+    componentWillMount() {
+        console.log(this.props)
         this.sendGetRequest()
+        this.amount=0;
     }
 
     private sendGetRequest = () => {
@@ -25,32 +32,31 @@ export class BookCatalogComponent extends React.Component {
             .catch(console.log)
     };
 
+    private Handle = (e:any)=>{
+        this.amount= e.target.value;
+    }
+
     render(){
         return(
             <div>
                 <ul>
                     {this.state.books.map(book =>
-                     <BookComponent  key={book.id}
-                         {...book}/>
-                        )}
-                   
+                    <li key= {book.id}>
+                        <div className="block2">
+                            <div className="block1">
+                                <p>title:   {book.title}</p>
+                                <p>author:  {book.author}</p>
+                                <p>price:   {book.price}</p>
+                                <p>balance: {book.amount_in_storage}</p>
+                            </div>
+                            <input type="number" id="amountOfOrder" onChange={this.Handle}/>
+                            { <button onClick={() => this.props.reserve(book, this.amount)}>Reserve</button>   }
+                        </div>
+                    </li>
+                    )}
                 </ul>
             </div>
         );
     }
 };
 
-const BookComponent = (book: Book) => {
-    return (
-        <div className="block2">
-            <div className="block1">
-                <p>title:   {book.title}</p>
-                <p>author:  {book.author}</p>
-                <p>price:   {book.price}</p>
-                <p>balance: {book.amount_in_storage}</p>
-            </div>
-            <input type="numer" id="amountOfReserve"/>
-            <button>Reserve</button>
-        </div>
-    );
-}
