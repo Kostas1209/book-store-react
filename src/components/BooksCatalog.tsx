@@ -20,7 +20,6 @@ export class BookCatalogComponent extends React.Component {
         fetch('http://localhost:8000/api/book_catalog')
             .then(res => res.json())
             .then((data) => {
-                console.log(data);
               this.setState({books: data.books} )
             })
             .catch(console.log)
@@ -50,6 +49,8 @@ const BookComponent = (book: Book) => {
                 <p>price:   {book.price}</p>
                 <p>balance: {book.amount_in_storage}</p>
             </div>
+            <input type="numer" id="amountOfReserve"/>
+            <button>Reserve</button>
         </div>
     );
 }
