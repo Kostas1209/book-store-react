@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BookCatalogComponent } from './components/BooksCatalog';
+import BookCatalogContainer from './containers/BookCatalogContainer';
 
 
 export class App extends React.Component {
@@ -8,7 +8,7 @@ export class App extends React.Component {
   render()
   {
      return(
-       <BookCatalogComponent />   /// fucking error
+       <BookCatalogContainer/>   /// fucking error
      )
   }
 }

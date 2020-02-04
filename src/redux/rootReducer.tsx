@@ -1,9 +1,9 @@
 import { BookCatalogReducer } from "./BookCatalog/reducer";
 import { combineReducers } from "redux";
-import { UserBasketState } from "../types/BookCatalogState";
+import { UserBasketItem } from "../types/BookCatalogState";
 
 export interface RootState {
-   reservedBooks: UserBasketState
+   reservedBooks: UserBasketItem []
 }
 
 const rootReducer = combineReducers({

@@ -9,7 +9,3 @@ export interface UserBasketItem {
     book: Book,
     amount: number
 }
-
-export interface UserBasketState{
-    UserBooks: UserBasketItem []
-}

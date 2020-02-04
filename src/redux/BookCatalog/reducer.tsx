@@ -1,22 +1,31 @@
-import { UserBasketState } from "../../types/BookCatalogState";
+// import { UserBasketState } from "../../types/BookCatalogState";
 import { RootState } from "../rootReducer";
+import { UserBasketItem } from "../../types/BookCatalogState";
 
-export const initialState: UserBasketState=
+interface UserBasket{
+    UserReservedBooks: UserBasketItem[]
+}
+
+export const initialState: UserBasket  =
 {
-    UserBooks: []
+    UserReservedBooks: []
 };
 
-export function BookCatalogReducer(state: UserBasketState = initialState, action : any)
+export function BookCatalogReducer(state: UserBasket = initialState, action : any)
 {
     switch(action.type)
     {
         case 'RESERVE_BOOK':
             {
-                const { reserve } = action.payload;
-                console.log(reserve);
+                const reserve : UserBasketItem = {
+                    book: action.book,
+                    amount: action.amount
+                }
+                const newList = Object.assign([], state.UserReservedBooks);
+                newList.push(reserve);
                 return {
                     ...state,
-                    UserBooks: state.UserBooks.push(reserve)
+                    UserReservedBooks: newList
                 }
             }
 
