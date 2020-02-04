@@ -3,6 +3,7 @@ import './App.css';
 import BookCatalogContainer from './containers/BookCatalogContainer';
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { LoginComponent } from './components/Login';
+import { RegistrationComponent } from './components/Registration';
 
 export class App extends React.Component {
 
@@ -13,6 +14,7 @@ export class App extends React.Component {
             <Switch>
                 <Route exact path="/" component={BookCatalogContainer} />
                 <Route exact path="/login" component={LoginComponent} />
+                <Route exact path="/logup" component={RegistrationComponent} />
             </Switch>
         </Router>
      )

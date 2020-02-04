@@ -3,6 +3,7 @@ import React from "react";
 import { BookCatalogState, UserBasketItem } from "../types/BookCatalogState";
 import "../styles/Book.scss";
 import { Book } from "../types/Book";
+import { getBooks } from "../services/BookCatalogService";
 
 
 export interface BookComponentProps{ 
@@ -18,18 +19,14 @@ export class BookCatalogComponent extends React.Component<BookComponentProps, {}
     private amount: number = 0;
 
     componentWillMount() {
-        this.sendGetRequest()
+        getBooks()
+        .then(res => res.json())
+        .then((data) => {
+            this.setState({books : data.books})
+        })
+        .catch(console.log)
         this.amount=0;
     }
-
-    private sendGetRequest = () => {
-        fetch('http://localhost:8000/api/book_catalog')
-            .then(res => res.json())
-            .then((data) => {
-              this.setState({books: data.books} )
-            })
-            .catch(console.log)
-    };
 
     private Handle = (e:any)=>{
         this.amount= e.target.value;

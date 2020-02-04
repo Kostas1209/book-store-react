@@ -1,5 +1,6 @@
 import * as React from "react";
-import { postCredentials } from "../services/LoginService";
+import { postLoginCredentials  } from "../services/LoginService";
+import { Link } from "react-router-dom";
 
 interface LoginState{
     email: string,
@@ -28,7 +29,7 @@ export class LoginComponent extends React.Component<{}, LoginState>
 
     SendForm()
     {
-        postCredentials(this.state.email, this.state.password)
+        postLoginCredentials (this.state.email, this.state.password)
         .then(response => response.json())
         .then(data => console.log(data))
         .catch(error => console.log(error))
@@ -44,6 +45,8 @@ export class LoginComponent extends React.Component<{}, LoginState>
                     <p>password: <input type="password" name="pass" value={this.state.password} onChange={this.HandlePassword} /></p>
                     <button onClick={()=>this.SendForm()} >Login</button>
                 </fieldset>
+                <Link to="/logup">Login</Link>
+                <Link to="/">Books</Link>
             </div>
         );
     }

@@ -1,11 +1,10 @@
-
-export const postCredentials = (email: string, password: string) => {
+export const postLoginCredentials = (email: string, password: string) => {
   const body={
     email: email ,
     password: password
     }
 
-  return fetch('http://localhost:8000/api/login/',
+  return fetch( `${process.env.REACT_APP_API_URL}/api/login/`,
      {
         method: "POST",
         mode: "cors",
