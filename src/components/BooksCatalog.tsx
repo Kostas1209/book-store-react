@@ -11,7 +11,11 @@ export interface BookComponentProps{
     reserve: (book: Book,amount: number ) => void 
 }
 
-export class BookCatalogComponent extends React.Component<BookComponentProps, {}> {
+export interface BookComponentState{ 
+    books: Book[]
+}
+
+export class BookCatalogComponent extends React.Component<BookComponentProps, BookComponentState> {
     
     state: BookCatalogState = {
         books: []

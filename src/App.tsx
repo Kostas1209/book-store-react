@@ -4,6 +4,7 @@ import BookCatalogContainer from './containers/BookCatalogContainer';
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { LoginComponent } from './components/Login';
 import { RegistrationComponent } from './components/Registration';
+import UserBasketComponent from './components/UserBasket';
 
 export class App extends React.Component {
 
@@ -11,6 +12,7 @@ export class App extends React.Component {
   {
      return(
        <Router>
+            <UserBasketComponent />
             <Switch>
                 <Route exact path="/" component={BookCatalogContainer} />
                 <Route exact path="/login" component={LoginComponent} />
