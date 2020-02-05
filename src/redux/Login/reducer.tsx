@@ -1,12 +1,16 @@
 import { RootState } from "../rootReducer";
 
 export interface Login{
-    isLogin: boolean
+    isLogin: boolean,
+    accessToken: string,
+    refreshToken: string
 }
 
 export const initialState: Login  =
 {
-    isLogin: false
+    isLogin: false,
+    accessToken: "",
+    refreshToken: ""
 };
 
 export function LoginReducer(state: Login = initialState, action : any)
@@ -20,6 +24,20 @@ export function LoginReducer(state: Login = initialState, action : any)
                     isLogin: action.isLogin
                 }
             }
+        case 'SAVE_ACCESS_TOKEN':
+            {
+                return {
+                    ...state,
+                    accessToken: action.accessToken
+                }
+            }
+        case 'SAVE_REFRESH_TOKEN':
+            {
+                return {
+                        ...state,
+                        refreshToken: action.refreshToken
+                    }
+                }
 
         default:
             return state;

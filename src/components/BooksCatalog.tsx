@@ -38,6 +38,13 @@ export class BookCatalogComponent extends React.Component<BookComponentProps, Bo
         this.amount= e.target.value;
     }
 
+    private HandleButton =(book: Book, amount: number)=>{
+        if(amount <= book.amount_in_storage && amount > 0)
+        {
+            this.props.reserve(book, amount)
+        }   
+    }
+
     render(){
         return(
             <div>
@@ -60,7 +67,7 @@ export class BookCatalogComponent extends React.Component<BookComponentProps, Bo
                                     book.amount_in_storage > 0 && 
                                     <p>
                                         <input type="number" id="amountOfOrder" onChange={this.Handle} min="1" max={book.amount_in_storage}/>
-                                        <button onClick={() => this.props.reserve(book, this.amount)}>Reserve</button>
+                                        <button onClick={() => this.HandleButton(book, this.amount)}>Reserve</button>
                                     </p>
                                 }
                             </div>  

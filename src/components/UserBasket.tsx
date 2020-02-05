@@ -11,7 +11,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: '100%',
+      width: '50%',
     },
     heading: {
       fontSize: theme.typography.pxToRem(15),
@@ -32,7 +32,7 @@ export default function UserBasketComponent({UserBooks,deleteBook}: UserBasketPr
     console.log(UserBooks);
     return(
             <div>
-                <ExpansionPanel>
+                <ExpansionPanel className={classes.root}>
                     <ExpansionPanelSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"

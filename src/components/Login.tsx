@@ -3,8 +3,9 @@ import { postLoginCredentials  } from "../services/LoginService";
 import { Link, Redirect } from "react-router-dom";
 
 interface LoginProps{
-    cookies: any,
-    userLogin: (isLogin : boolean) => void
+    userLogin: (isLogin : boolean) => void,
+    saveAccessToken: (accessToken: string) => void,
+    saveRefreshToken: (refreshToken : string) => void
 }
 
 interface LoginState{
@@ -43,9 +44,9 @@ export class LoginComponent extends React.Component<LoginProps, LoginState>
             this.props.userLogin(true);    ///
             this.setState({loged: true});  /// user loged in successfully
 
-            document.cookie = `access=${data.access}; max-age=${7*60}; path=/`;/// save access token 
+            this.props.saveAccessToken(data.access)/// save access token 
 
-            document.cookie = `refresh=${data.refresh}; max-age=${25*60*60}; path=/`;/// save access token 
+            this.props.saveRefreshToken(data.refresh)/// save refresh token 
 
         })
         .catch(error => console.log(error))

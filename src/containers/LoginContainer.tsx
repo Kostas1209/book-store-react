@@ -1,19 +1,17 @@
 import { Dispatch } from "react";
-import { ChangeUserStatus } from "../redux/Login/actions";
+import { ChangeUserStatus, SaveAccessToken, SaveRefreshToken } from "../redux/Login/actions";
 import { AnyAction } from "redux";
 import { connect } from "react-redux";
 import { LoginComponent } from "../components/Login";
 
-const mapStateToProps = (ownProps: { cookies: any; }) =>({
-    cookies: ownProps.cookies
-})
-
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>({
-    userLogin: (isLogin: boolean) => dispatch(ChangeUserStatus(isLogin))
+    userLogin: (isLogin: boolean) => dispatch(ChangeUserStatus(isLogin)),
+    saveAccessToken: (accessToken: string) => dispatch(SaveAccessToken(accessToken)),
+    saveRefreshToken: (refreshToken: string) => dispatch(SaveRefreshToken(refreshToken)),
 })
 
 export default connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )(LoginComponent);
