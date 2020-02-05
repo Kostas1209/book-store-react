@@ -6,9 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { makeStyles, Theme, createStyles } from "@material-ui/core";
 import { UserBasketItem } from "../types/BookCatalogState";
-import { useContext } from "react";
-import { reservedBooks } from "../redux/BookCatalog/reducer";
-import rootReducer from "../redux/rootReducer";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -23,14 +20,14 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface UserBasketProps{
-    reservedBooks: UserBasketItem []
+    UserBooks: UserBasketItem []
 }
 
 //const UserBooks = useContext<UserBasketProps>(rootReducer.);
-export default function UserBasketComponent()
+export default function UserBasketComponent({UserBooks}: any)
 {
     const classes = useStyles();
-
+    console.log(UserBooks.UserReservedBooks)
     return(
             <div>
                 <ExpansionPanel>
@@ -39,12 +36,22 @@ export default function UserBasketComponent()
                         aria-controls="panel1a-content"
                         id="panel1a-header"
                     >
-                        <Typography className={classes.heading}>Expansion Panel 1</Typography>
+                        <Typography className={classes.heading}>Your Books</Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
-                        <Typography>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                            sit amet blandit leo lobortis eget.
+                        <Typography component={'span'} >
+                        <ul>
+                          {UserBooks.UserReservedBooks.map((book : UserBasketItem) => 
+                              <div>
+                                  <div >
+                                      <span>title:   {book.book.title}</span>
+                                  </div>  
+                                  <div >
+                                      <span>amount:   {book.amount}</span>
+                                  </div> 
+                              </div>
+                          )}
+                        </ul>
                         </Typography>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>

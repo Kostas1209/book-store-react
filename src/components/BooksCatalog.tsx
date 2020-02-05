@@ -29,7 +29,7 @@ export class BookCatalogComponent extends React.Component<BookComponentProps, Bo
             this.setState({books : data.books})
         })
         .catch(console.log)
-        this.amount=0;
+        this.amount=1;
     }
 
     private Handle = (e:any)=>{
@@ -49,8 +49,15 @@ export class BookCatalogComponent extends React.Component<BookComponentProps, Bo
                                 <p>price:   {book.price}</p>
                                 <p>balance: {book.amount_in_storage}</p>
                             </div>
-                            <input type="number" id="amountOfOrder" onChange={this.Handle} min="1" max={book.amount_in_storage}/>
-                            <button onClick={() => this.props.reserve(book, this.amount)}>Reserve</button>   
+                            <div>
+                                {
+                                    book.amount_in_storage > 0 && 
+                                    <p>
+                                        <input type="number" id="amountOfOrder" onChange={this.Handle} min="1" max={book.amount_in_storage}/>
+                                        <button onClick={() => this.props.reserve(book, this.amount)}>Reserve</button>
+                                    </p>
+                                }
+                            </div>  
                         </div>
                     </li>
                     )}

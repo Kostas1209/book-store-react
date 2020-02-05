@@ -17,12 +17,12 @@ export function BookCatalogReducer(state: UserBasket = initialState, action : an
     {
         case 'RESERVE_BOOK':
             {
-                const reserve : UserBasketItem = {
+                let reserve : UserBasketItem = {
                     book: action.book,
                     amount: action.amount
                 }
-                const newList = Object.assign([], state.UserReservedBooks);
-                newList.push(reserve);
+                let newList = Object.assign([], state.UserReservedBooks);
+                CheckSimilarBookOrPush(newList, reserve);
                 return {
                     ...state,
                     UserReservedBooks: newList
@@ -32,6 +32,24 @@ export function BookCatalogReducer(state: UserBasket = initialState, action : an
         default:
             return state;
     }
+}
+
+function CheckSimilarBookOrPush(userBooks : UserBasketItem[], newAddBook: UserBasketItem) : void
+{
+    let isSimilar : boolean = false
+    userBooks.forEach(bookInBasket => {
+        if( bookInBasket.book.id === newAddBook.book.id)
+        {
+            bookInBasket.amount = (bookInBasket.amount + newAddBook.amount) as number
+            isSimilar = true
+            return 
+        }
+    });
+    if (!isSimilar)
+    {
+        userBooks.push(newAddBook);
+    }
+    
 }
 
 export const reservedBooks = (state: RootState) => state.reservedBooks;

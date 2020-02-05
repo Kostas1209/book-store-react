@@ -1,20 +1,26 @@
 import * as React from "react";
 import { postLoginCredentials  } from "../services/LoginService";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+
+interface LoginProps{
+    userLogin: (isLogin : boolean) => void
+}
 
 interface LoginState{
     email: string,
-    password: string
+    password: string,
+    loged: boolean
 }
 
-export class LoginComponent extends React.Component<{}, LoginState>
+export class LoginComponent extends React.Component<LoginProps, LoginState>
 {
     state: LoginState = {
         email: "",
-        password: ""
+        password: "",
+        loged: false
     };
 
-    constructor(props: Readonly<{}>){
+    constructor(props: Readonly<LoginProps>){
         super(props);
         console.log(this.state)
     }
@@ -31,7 +37,15 @@ export class LoginComponent extends React.Component<{}, LoginState>
     {
         postLoginCredentials (this.state.email, this.state.password)
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data)
+            this.props.userLogin(true);    ///
+            this.setState({loged: true});  /// user loged in successfully
+            /*
+                    SAVE TOKENS TO STORAGE 
+            */
+
+        })
         .catch(error => console.log(error))
     }
 
@@ -45,6 +59,10 @@ export class LoginComponent extends React.Component<{}, LoginState>
                     <p>password: <input type="password" name="pass" value={this.state.password} onChange={this.HandlePassword} /></p>
                     <button onClick={()=>this.SendForm()} >Login</button>
                 </fieldset>
+                {
+                    this.state.loged===true &&
+                    <Redirect to="/" />
+                }
                 <Link to="/logup">Login</Link>
                 <Link to="/">Books</Link>
             </div>

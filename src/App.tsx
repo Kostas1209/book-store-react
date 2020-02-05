@@ -2,20 +2,27 @@ import React from 'react';
 import './App.css';
 import BookCatalogContainer from './containers/BookCatalogContainer';
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import { LoginComponent } from './components/Login';
 import { RegistrationComponent } from './components/Registration';
-import UserBasketComponent from './components/UserBasket';
+import UserBasketContainer from './containers/UserBasketContainer';
+import LoginContainer from './containers/LoginContainer';
 
-export class App extends React.Component {
+interface AppComponentProps{
+   isLogin : boolean
+}
+
+export class App extends React.Component<AppComponentProps> {
 
   render()
   {
      return(
        <Router>
-            <UserBasketComponent />
+            {
+               this.props.isLogin &&
+               <UserBasketContainer />
+            }
             <Switch>
                 <Route exact path="/" component={BookCatalogContainer} />
-                <Route exact path="/login" component={LoginComponent} />
+                <Route exact path="/login" component={LoginContainer} />
                 <Route exact path="/logup" component={RegistrationComponent} />
             </Switch>
         </Router>
