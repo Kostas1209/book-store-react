@@ -4,10 +4,12 @@ import { BookCatalogState, UserBasketItem } from "../types/BookCatalogState";
 import "../styles/Book.scss";
 import { Book } from "../types/Book";
 import { getBooks } from "../services/BookCatalogService";
+import { Link } from "react-router-dom";
 
 
 export interface BookComponentProps{ 
     UserBooks?: UserBasketItem [],
+    isLogin: boolean,
     reserve: (book: Book,amount: number ) => void 
 }
 
@@ -39,6 +41,10 @@ export class BookCatalogComponent extends React.Component<BookComponentProps, Bo
     render(){
         return(
             <div>
+                {
+                    !this.props.isLogin &&
+                    <Link to="/login">Login</Link>
+                }
                 <ul>
                     {this.state.books.map(book =>
                     <li key= {book.id}>

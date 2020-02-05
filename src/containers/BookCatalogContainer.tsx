@@ -9,7 +9,8 @@ import { Book } from "../types/Book";
 import { RootState } from "../redux/rootReducer";
 
   const mapStateToProps = (state : RootState) => ({
-    userBooks: state.reservedBooks
+    userBooks: state.reservedBooks,
+    isLogin: state.login.isLogin
   });
   
   const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>({

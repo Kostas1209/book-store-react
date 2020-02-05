@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { makeStyles, Theme, createStyles } from "@material-ui/core";
 import { UserBasketItem } from "../types/BookCatalogState";
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -20,7 +21,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface UserBasketProps{
-    UserBooks: UserBasketItem []
+    UserBooks: UserBasketItem [],
+    deleteBook: (id: number) => void
 }
 
 //const UserBooks = useContext<UserBasketProps>(rootReducer.);
@@ -42,13 +44,14 @@ export default function UserBasketComponent({UserBooks}: any)
                         <Typography component={'span'} >
                         <ul>
                           {UserBooks.UserReservedBooks.map((book : UserBasketItem) => 
-                              <div>
+                              <div key={book.book.id}>
                                   <div >
                                       <span>title:   {book.book.title}</span>
                                   </div>  
                                   <div >
                                       <span>amount:   {book.amount}</span>
-                                  </div> 
+                                  </div>
+                                  <button> <DeleteIcon/> </button> 
                               </div>
                           )}
                         </ul>

@@ -4,12 +4,16 @@ import { AnyAction } from "redux";
 import { connect } from "react-redux";
 import { LoginComponent } from "../components/Login";
 
+const mapStateToProps = (ownProps: { cookies: any; }) =>({
+    cookies: ownProps.cookies
+})
+
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>({
     userLogin: (isLogin: boolean) => dispatch(ChangeUserStatus(isLogin))
 })
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(LoginComponent);
