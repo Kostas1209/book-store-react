@@ -26,10 +26,10 @@ interface UserBasketProps{
 }
 
 //const UserBooks = useContext<UserBasketProps>(rootReducer.);
-export default function UserBasketComponent({UserBooks}: any)
+export default function UserBasketComponent({UserBooks,deleteBook}: UserBasketProps)
 {
     const classes = useStyles();
-    console.log(UserBooks.UserReservedBooks)
+    console.log(UserBooks);
     return(
             <div>
                 <ExpansionPanel>
@@ -43,7 +43,7 @@ export default function UserBasketComponent({UserBooks}: any)
                     <ExpansionPanelDetails>
                         <Typography component={'span'} >
                         <ul>
-                          {UserBooks.UserReservedBooks.map((book : UserBasketItem) => 
+                          {UserBooks.map((book) => 
                               <div key={book.book.id}>
                                   <div >
                                       <span>title:   {book.book.title}</span>
@@ -51,7 +51,7 @@ export default function UserBasketComponent({UserBooks}: any)
                                   <div >
                                       <span>amount:   {book.amount}</span>
                                   </div>
-                                  <button> <DeleteIcon/> </button> 
+                                  <button onClick={() => deleteBook(book.book.id)}> <DeleteIcon/> </button> 
                               </div>
                           )}
                         </ul>

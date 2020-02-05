@@ -1,17 +1,15 @@
 // import { UserBasketState } from "../../types/BookCatalogState";
 import { RootState } from "../rootReducer";
-import { UserBasketItem } from "../../types/BookCatalogState";
+import { UserBasketItem, UserBasketState } from "../../types/BookCatalogState";
 
-interface UserBasket{
-    UserReservedBooks: UserBasketItem[]
-}
 
-export const initialState: UserBasket  =
+
+export const initialState: UserBasketState  =
 {
-    UserReservedBooks: []
+    UserBooks: []
 };
 
-export function BookCatalogReducer(state: UserBasket = initialState, action : any)
+export function BookCatalogReducer(state: UserBasketState = initialState, action : any)
 {
     switch(action.type)
     {
@@ -21,11 +19,19 @@ export function BookCatalogReducer(state: UserBasket = initialState, action : an
                     book: action.book,
                     amount: action.amount
                 }
-                let newList = Object.assign([], state.UserReservedBooks);
+                let newList = Object.assign([], state.UserBooks);
                 CheckSimilarBookOrPush(newList, reserve);
                 return {
                     ...state,
-                    UserReservedBooks: newList
+                    UserBooks: newList
+                }
+            }
+        case 'DELETE_BOOK':
+            {
+                let newList = state.UserBooks.filter(obj => obj.book.id !==action.id );
+                state.UserBooks=newList
+                return {
+                    ...state
                 }
             }
 
@@ -40,7 +46,7 @@ function CheckSimilarBookOrPush(userBooks : UserBasketItem[], newAddBook: UserBa
     userBooks.forEach(bookInBasket => {
         if( bookInBasket.book.id === newAddBook.book.id)
         {
-            bookInBasket.amount = (bookInBasket.amount + newAddBook.amount) as number
+            bookInBasket.amount = ( Number(bookInBasket.amount) + Number(newAddBook.amount ))
             isSimilar = true
             return 
         }

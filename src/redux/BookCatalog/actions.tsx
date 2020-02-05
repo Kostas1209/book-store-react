@@ -7,3 +7,10 @@ export const reserveBook = (book : Book, amount : number) =>(
         amount
     }
 ); 
+
+export const DeleteBook = (id: number ) =>(
+    {
+        type : "DELETE_BOOK",
+        id
+    }
+); 

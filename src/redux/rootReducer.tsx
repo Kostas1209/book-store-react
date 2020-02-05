@@ -1,6 +1,6 @@
 import { BookCatalogReducer } from "./BookCatalog/reducer";
 import { combineReducers } from "redux";
-import { UserBasketItem, UserBasketState } from "../types/BookCatalogState";
+import { UserBasketState } from "../types/BookCatalogState";
 import { Login, LoginReducer } from "./Login/reducer";
 
 export interface RootState {
