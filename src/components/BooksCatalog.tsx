@@ -64,7 +64,7 @@ export class BookCatalogComponent extends React.Component<BookComponentProps, Bo
                             </div>
                             <div>
                                 {
-                                    book.amount_in_storage > 0 && 
+                                    book.amount_in_storage > 0 && this.props.isLogin && 
                                     <p>
                                         <input type="number" id="amountOfOrder" onChange={this.Handle} min="1" max={book.amount_in_storage}/>
                                         <button onClick={() => this.HandleButton(book, this.amount)}>Reserve</button>

@@ -7,6 +7,7 @@ import UserBasketContainer from './containers/UserBasketContainer';
 import LoginContainer from './containers/LoginContainer';
 import UserCabinetContainer from './containers/UserCabinetContainer';
 import UserAvatarContainer from './containers/UserAvatarContainer';
+import LogoutContainer from './containers/LogoutContainer';
 
 interface AppComponentProps{
    isLogin : boolean
@@ -23,6 +24,7 @@ export class App extends React.Component<AppComponentProps> {
                <div>
                   <UserBasketContainer />
                   <UserAvatarContainer />
+                  <LogoutContainer />
                </div>
                
             }
