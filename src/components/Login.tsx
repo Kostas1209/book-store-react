@@ -41,12 +41,13 @@ export class LoginComponent extends React.Component<LoginProps, LoginState>
         .then(response => response.json())
         .then(data => {
             console.log(data)
-            this.props.userLogin(true);    ///
-            this.setState({loged: true});  /// user loged in successfully
 
             this.props.saveAccessToken(data.access)/// save access token 
 
-            this.props.saveRefreshToken(data.refresh)/// save refresh token 
+            this.props.saveRefreshToken(data.refresh)/// save refresh token
+            
+            this.props.userLogin(true);    ///
+            this.setState({loged: true});  /// user loged in successfully
 
         })
         .catch(error => console.log(error))

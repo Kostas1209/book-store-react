@@ -24,7 +24,7 @@ export class BookCatalogComponent extends React.Component<BookComponentProps, Bo
     } 
     private amount: number = 0;
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         getBooks()
         .then(res => res.json())
         .then((data) => {

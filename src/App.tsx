@@ -6,6 +6,7 @@ import { RegistrationComponent } from './components/Registration';
 import UserBasketContainer from './containers/UserBasketContainer';
 import LoginContainer from './containers/LoginContainer';
 import UserCabinetContainer from './containers/UserCabinetContainer';
+import UserAvatarContainer from './containers/UserAvatarContainer';
 
 interface AppComponentProps{
    isLogin : boolean
@@ -20,8 +21,8 @@ export class App extends React.Component<AppComponentProps> {
             {
                this.props.isLogin &&
                <div>
-                  <UserCabinetContainer />
                   <UserBasketContainer />
+                  <UserAvatarContainer />
                </div>
                
             }
@@ -29,7 +30,7 @@ export class App extends React.Component<AppComponentProps> {
                 <Route exact path="/" component={BookCatalogContainer} />
                 <Route exact path="/login" component={LoginContainer} />
                 <Route exact path="/logup" component={RegistrationComponent} />
-                {/* <Route exact path="/cabinet" component={UserCabinetContainer} /> */}
+                <Route exact path="/cabinet" component={UserCabinetContainer} /> 
             </Switch>
         </Router>
      )
