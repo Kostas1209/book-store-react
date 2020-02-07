@@ -20,3 +20,9 @@ export const SaveRefreshToken = (refreshToken : string ) =>(
         refreshToken
     }
 );
+
+export const DeleteTokens = () =>(
+    {
+        type : "DELETE_TOKENS"
+    }
+);

@@ -37,8 +37,13 @@ export function LoginReducer(state: Login = initialState, action : any)
                         ...state,
                         refreshToken: action.refreshToken
                     }
+            }
+        case 'DELETE_TOKENS':
+            {
+                return{
+                    initialState
                 }
-
+            }
         default:
             return state;
     }

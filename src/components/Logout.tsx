@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 interface LogoutProps{
     isLogin: boolean,
     changeUserStatus: (isLogin: boolean) => void,
+    deleteTokens: () => void,
     reset: () => void
 }
 
@@ -17,10 +18,11 @@ export class LogoutComponent extends React.Component<LogoutProps, LogoutState>
         redirect: false
     };
 
-    LogOut = () => {
+    LogOut (){
         this.props.reset();
         this.props.changeUserStatus(false);
         localStorage.clear();
+        this.props.deleteTokens();
         this.setState({redirect: true});
     }
 
@@ -28,13 +30,15 @@ export class LogoutComponent extends React.Component<LogoutProps, LogoutState>
     {
         return(
             <div>
-                <button onClick={this.LogOut}>
-                    Log out
-                    
+                <button onClick={()=>this.LogOut()}>
+                    Log out     
                 </button>
                 {
                     this.state.redirect === true &&
-                    <Redirect to="/login" />
+                    <div>
+                        <Redirect to="/login" />
+                    </div>
+                    
                 }
             </div>
         )

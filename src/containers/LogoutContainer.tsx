@@ -1,6 +1,6 @@
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
-import { ChangeUserStatus } from "../redux/Login/actions";
+import { ChangeUserStatus, DeleteTokens } from "../redux/Login/actions";
 import { Reset } from "../redux/BookCatalog/actions";
 import { RootState } from "../redux/rootReducer";
 import { connect } from "react-redux";
@@ -13,6 +13,7 @@ const mapStateToProps = (state: RootState) =>
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>({
     changeUserStatus: (isLogin: boolean) => dispatch(ChangeUserStatus(isLogin)),
+    deleteTokens: () => dispatch(DeleteTokens()),
     reset: () => dispatch(Reset()),
 })
 
