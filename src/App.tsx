@@ -12,6 +12,7 @@ import axios from 'axios';
 import { store } from './redux/store';
 import { RootState } from './redux/rootReducer';
 import { SaveAccessToken, ChangeUserStatus, DeleteTokens } from './redux/Login/actions';
+import { Reset } from './redux/BookCatalog/actions';
 
 interface AppComponentProps{
    isLogin : boolean
@@ -20,7 +21,7 @@ interface AppComponentProps{
 
 
 axios.interceptors.request.use(
-   request => {
+   (request) => {
       let storeInfo : RootState = store.getState();
       let token = storeInfo.login.accessToken;
       if(token !== "")
@@ -29,7 +30,7 @@ axios.interceptors.request.use(
       }
       return request;
    },
-   error => {
+   (error) => {
       Promise.reject(error);
    }
 )
@@ -50,6 +51,8 @@ axios.interceptors.response.use(
                store.dispatch(DeleteTokens());
                store.dispatch(ChangeUserStatus(false));
                localStorage.clear();
+               /// Make redirect 
+
                return Promise.reject(error);
             }
 
@@ -80,6 +83,7 @@ axios.interceptors.response.use(
        */
       store.dispatch(DeleteTokens());
       store.dispatch(ChangeUserStatus(false));
+      store.dispatch(Reset());
       localStorage.clear();
       //redirect
 

@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 
 export interface BookComponentProps{ 
-    UserBooks?: UserBasketItem [],
+    UserBooks: UserBasketItem [],
     isLogin: boolean,
     reserve: (book: Book,amount: number ) => void 
 }
@@ -28,10 +28,25 @@ export class BookCatalogComponent extends React.Component<BookComponentProps, Bo
         getBooks()
         .then((data) => {
             this.setState({books : data.data.books})
+            //this.RecountBooks();
         })
         .catch(console.log)
+        
         this.amount=1;
     }
+
+    // private RecountBooks()
+    // {
+    //     this.state.books.forEach(book => {
+    //         this.props.UserBooks.forEach(orderedBook => {
+    //             if(book.id === orderedBook.book.id)
+    //             {
+    //                 console.log(book.id);
+    //                 book.amount_in_storage -= orderedBook.amount;
+    //             }
+    //         });
+    //     });
+    // }
 
     private Handle = (e:any)=>{
         this.amount= e.target.value;
@@ -40,6 +55,14 @@ export class BookCatalogComponent extends React.Component<BookComponentProps, Bo
     private HandleButton =(book: Book, amount: number)=>{
         if(amount <= book.amount_in_storage && amount > 0)
         {
+            let newBook = this.state.books;
+            for(let i =0;i<this.state.books.length; ++i)
+            {
+                if(this.state.books[i].id === book.id){
+                    newBook[i].amount_in_storage -= amount;
+                    this.setState({books : newBook});
+                }
+            }
             this.props.reserve(book, amount)
         }   
     }
