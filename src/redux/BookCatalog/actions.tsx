@@ -15,8 +15,8 @@ export const DeleteBook = (id: number ) =>(
     }
 ); 
 
-export const Reset = () =>(
+export const Reset = () => (
     {
-        type : "RESET"
+        type: "RESET"
     }
-); 
+);

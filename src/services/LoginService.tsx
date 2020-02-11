@@ -1,18 +1,15 @@
-export const postLoginCredentials = (email: string, password: string) => {
-  const body={
-    email: email ,
-    password: password
-    }
+import axios from "axios";
 
-  return fetch( `${process.env.REACT_APP_API_URL}/api/login/`,
+export const postLoginCredentials = (email: string, password: string) => {
+
+  return axios.post( `${process.env.REACT_APP_API_URL}/api/login/`,
      {
-        method: "POST",
-        mode: "cors",
         headers: {
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json'
           },
-        body: JSON.stringify(body)
+        "email" : email,
+        "password" : password
      }
   );
 };

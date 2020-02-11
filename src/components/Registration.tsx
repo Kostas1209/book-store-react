@@ -28,7 +28,6 @@ export class RegistrationComponent extends React.Component<{}, RegistrationState
     {  
         postRegistrationCredentials(this.state.email, this.state.password, this.state.username,
             this.state.first_name, this.state.last_name)
-        .then(response => response.json())
         .then(data => console.log(data))
         .catch(error => console.log(error))
     }

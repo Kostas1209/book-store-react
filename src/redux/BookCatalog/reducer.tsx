@@ -36,7 +36,7 @@ export function BookCatalogReducer(state: UserBasketState = initialState, action
             }
         case 'RESET':
             {
-                return{
+                return {
                     ...initialState
                 }
             }

@@ -31,13 +31,12 @@ export class UserCabinetComponent extends React.Component<UserCabinetProps, Rece
     }
     UNSAFE_componentWillMount(){
          getUserInfo(this.props.accessToken)
-        .then(response => response.json())
         .then(data => {
             console.log(data);
-            this.setState({email: data.email});
-            this.setState({first_name: data.first_name});
-            this.setState({last_name :data.last_name})
-            this.setState({username : data.username})
+            this.setState({email: data.data.email});
+            this.setState({first_name: data.data.first_name});
+            this.setState({last_name :data.data.last_name})
+            this.setState({username : data.data.username})
         })
         .catch(console.log)
     }

@@ -12,4 +12,4 @@ export const store = createStore(rootReducer, persistedState, composeWithDevTool
 
 store.subscribe(throttle(() => {
     saveState( store.getState());
-  }, 200));
+  }, 100));

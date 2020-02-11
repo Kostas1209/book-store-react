@@ -26,9 +26,8 @@ export class BookCatalogComponent extends React.Component<BookComponentProps, Bo
 
     UNSAFE_componentWillMount() {
         getBooks()
-        .then(res => res.json())
         .then((data) => {
-            this.setState({books : data.books})
+            this.setState({books : data.data.books})
         })
         .catch(console.log)
         this.amount=1;

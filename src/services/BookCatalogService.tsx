@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export function getBooks () {
-    return fetch( `${process.env.REACT_APP_API_URL}/api/book_catalog/`)
+    return axios.get( `${process.env.REACT_APP_API_URL}/api/book_catalog/`)
 };

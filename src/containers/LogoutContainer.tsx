@@ -1,10 +1,10 @@
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
 import { ChangeUserStatus, DeleteTokens } from "../redux/Login/actions";
-import { Reset } from "../redux/BookCatalog/actions";
 import { RootState } from "../redux/rootReducer";
 import { connect } from "react-redux";
 import { LogoutComponent } from "../components/Logout";
+import { Reset } from "../redux/BookCatalog/actions";
 
 const mapStateToProps = (state: RootState) =>
 ({
