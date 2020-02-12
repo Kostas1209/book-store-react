@@ -1,6 +1,8 @@
+import { GetAllUsersActions } from './types';
+
 export function itemsHasError(state = false, action : any) {
     switch (action.type) {
-        case 'ITEMS_HAS_ERROR':
+        case GetAllUsersActions.ITEMS_HAS_ERROR:
             return action.hasError
         default:
             return state;
@@ -9,7 +11,7 @@ export function itemsHasError(state = false, action : any) {
 
 export function itemsIsLoading(state = false, action : any) {
     switch (action.type) {
-        case 'ITEMS_IS_LOADING':
+        case GetAllUsersActions.ITEMS_IS_LOADING:
             return action.isLoading
             
 
@@ -20,7 +22,7 @@ export function itemsIsLoading(state = false, action : any) {
 
 export function items(state = [], action :any) {
     switch (action.type) {
-        case 'ITEMS_AXIOS_DATA_SUCCESS':
+        case GetAllUsersActions.ITEMS_AXIOS_DATA_SUCCESS:
             return action.items
             
 

@@ -1,7 +1,7 @@
 // import { UserBasketState } from "../../types/BookCatalogState";
 import { RootState } from "../rootReducer";
 import { UserBasketItem, UserBasketState } from "../../types/BookCatalogState";
-
+import { BookCatalogActions } from './types';
 
 
 export const initialState: UserBasketState  =
@@ -13,7 +13,7 @@ export function BookCatalogReducer(state: UserBasketState = initialState, action
 {
     switch(action.type)
     {
-        case 'RESERVE_BOOK':
+        case BookCatalogActions.RESERVE_BOOK:
             {
                 let reserve : UserBasketItem = {
                     book: action.book,
@@ -26,7 +26,7 @@ export function BookCatalogReducer(state: UserBasketState = initialState, action
                     UserBooks: newList
                 }
             }
-        case 'DELETE_BOOK':
+        case BookCatalogActions.DELETE_BOOK:
             {
                 let newList = state.UserBooks.filter(obj => obj.book.id !==action.id );
                 state.UserBooks=newList
@@ -34,7 +34,7 @@ export function BookCatalogReducer(state: UserBasketState = initialState, action
                     ...state
                 }
             }
-        case 'RESET':
+        case BookCatalogActions.RESET:
             {
                 return {
                     ...initialState

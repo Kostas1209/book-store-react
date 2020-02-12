@@ -2,24 +2,26 @@ import { User } from "../../components/GetAllUsers";
 import { AnyAction } from "redux";
 import { Dispatch } from "react";
 import axios from 'axios';
+import {GetAllUsersActions} from './types';
+
 
 export function itemsHasError(bool : boolean) {
     return {
-        type: 'ITEMS_HAS_ERROR',
+        type: GetAllUsersActions.ITEMS_HAS_ERROR,
         hasError: bool
     };
 }
 
 export function itemsIsLoading(bool : boolean) {
     return {
-        type: 'ITEMS_IS_LOADING',
+        type:  GetAllUsersActions.ITEMS_IS_LOADING,
         isLoading: bool
     };
 }
 
 export function itemsAxiosDataSuccess(items : User[] ) {
     return {
-        type: 'ITEMS_AXIOS_DATA_SUCCESS',
+        type:  GetAllUsersActions.ITEMS_AXIOS_DATA_SUCCESS,
         items
     };
 }
