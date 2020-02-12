@@ -13,6 +13,7 @@ import { store } from './redux/store';
 import { RootState } from './redux/rootReducer';
 import { SaveAccessToken, ChangeUserStatus, DeleteTokens } from './redux/Login/actions';
 import { Reset } from './redux/BookCatalog/actions';
+import GetAllUsersContainer from './containers/GetAllUsersContainer';
 
 interface AppComponentProps{
    isLogin : boolean
@@ -91,6 +92,7 @@ axios.interceptors.response.use(
        return Promise.reject(error);
    }
 
+
 )
 
 
@@ -116,6 +118,7 @@ export class App extends React.Component<AppComponentProps> {
                 <Route exact path="/login" component={LoginContainer} />
                 <Route exact path="/logup" component={RegistrationComponent} />
                 <Route exact path="/cabinet" component={UserCabinetContainer} /> 
+                <Route exact path="/users" component={GetAllUsersContainer} />
             </Switch>
 
         </Router>

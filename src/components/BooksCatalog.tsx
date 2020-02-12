@@ -23,7 +23,6 @@ export class BookCatalogComponent extends React.Component<BookComponentProps, Bo
         books: []
     } 
     private amount: number = 0;
-
     UNSAFE_componentWillMount() {
         getBooks()
         .then((data) => {
@@ -74,6 +73,7 @@ export class BookCatalogComponent extends React.Component<BookComponentProps, Bo
                     !this.props.isLogin &&
                     <Link to="/login">Login</Link>
                 }
+                <Link to="/users">Users</Link>
                 <ul>
                     {this.state.books.map(book =>
                     <li key= {book.id}>
