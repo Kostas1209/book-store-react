@@ -24,11 +24,11 @@ export class UserAvatarComponent extends React.Component<UserAvatarProps, UserAv
        const data = localStorage.getItem("avatar");
        if(data === null)
        {
-           getUserAvatar(this.props.accessToken)
+           getUserAvatar()
             .then(data =>  
                 {
-                    console.log(data);
-                    this.setState({image : this.state.image + data.data});
+                    console.log(this.state.image + data.data.image);
+                    this.setState({image : this.state.image + data.data.image});
                     localStorage.setItem("avatar",data.data);
                 })
             .catch(console.log)

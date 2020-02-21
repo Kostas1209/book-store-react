@@ -1,5 +1,5 @@
 import * as React from "react";
-import { postLoginCredentials  } from "../services/LoginService";
+import { postLoginCredentials, LoginWithFaceBookService  } from "../services/LoginService";
 import { Link, Redirect } from "react-router-dom";
 
 interface LoginProps{
@@ -40,16 +40,22 @@ export class LoginComponent extends React.Component<LoginProps, LoginState>
         postLoginCredentials (this.state.email, this.state.password)
         .then(data => {
             console.log(data)
+            this.props.saveAccessToken(data.data.data.access)/// save access token 
 
-            this.props.saveAccessToken(data.data.access)/// save access token 
-
-            this.props.saveRefreshToken(data.data.refresh)/// save refresh token
+            this.props.saveRefreshToken(data.data.data.refresh)/// save refresh token
             
             this.props.userLogin(true);    ///
             this.setState({loged: true});  /// user loged in successfully
 
         })
         .catch(error => console.log(error))
+    }
+
+    WithHelpFacebook()
+    {
+        LoginWithFaceBookService()
+        .then((data: any) =>{})
+        .catch((error: any) => {});
     }
 
     render()
@@ -61,6 +67,7 @@ export class LoginComponent extends React.Component<LoginProps, LoginState>
                     <p>email:  <input type="email" name="email" value={this.state.email} onChange={this.HandleEmail}/></p>
                     <p>password: <input type="password" name="pass" value={this.state.password} onChange={this.HandlePassword} /></p>
                     <button onClick={()=>this.SendForm()} >Login</button>
+                    <button onClick={()=>this.WithHelpFacebook()} >Facebook</button>
                 </fieldset>
                 {
                     this.state.loged===true &&

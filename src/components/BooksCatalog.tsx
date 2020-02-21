@@ -1,6 +1,6 @@
 import React from "react";
 
-import { BookCatalogState, UserBasketItem } from "../types/BookCatalogState";
+import {  UserBasketItem } from "../types/BookCatalogState";
 import "../styles/Book.scss";
 import { Book } from "../types/Book";
 import { getBooks } from "../services/BookCatalogService";
@@ -14,19 +14,22 @@ export interface BookComponentProps{
 }
 
 export interface BookComponentState{ 
-    books: Book[]
+    books: Book[],
+    pageNumber: number
 }
 
 export class BookCatalogComponent extends React.Component<BookComponentProps, BookComponentState> {
     
-    state: BookCatalogState = {
-        books: []
+    state: BookComponentState = {
+        books: [] ,
+        pageNumber: 1
     } 
     private amount: number = 0;
     UNSAFE_componentWillMount() {
-        getBooks()
+        getBooks(this.state.pageNumber)
         .then((data) => {
-            this.setState({books : data.data.books})
+            console.log(data)
+            this.setState({books : data.data.data})
             //this.RecountBooks();
         })
         .catch(console.log)

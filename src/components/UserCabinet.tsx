@@ -32,10 +32,10 @@ export class UserCabinetComponent extends React.Component<UserCabinetProps, Rece
     UNSAFE_componentWillMount(){
          getUserInfo(this.props.accessToken)
         .then(data => {
-            console.log(data);
+            console.log(data.data);
             this.setState({email: data.data.email});
-            this.setState({first_name: data.data.first_name});
-            this.setState({last_name :data.data.last_name})
+            this.setState({first_name: data.data.firstName});
+            this.setState({last_name :data.data.lastName})
             this.setState({username : data.data.username})
         })
         .catch(console.log)
@@ -48,6 +48,7 @@ export class UserCabinetComponent extends React.Component<UserCabinetProps, Rece
     HandleClick = () => {
         this.setState({redirect : true});
     }
+
     render()
     {
         return (
@@ -61,11 +62,12 @@ export class UserCabinetComponent extends React.Component<UserCabinetProps, Rece
                     <p>first_name: <input name="first_name" onChange={this.Handle} value={this.state.first_name}/></p>
                     <p>last_name: <input name="last_name" onChange={this.Handle} value={this.state.last_name} /></p>
                 </div>
+                {/* <input type="file" name="photo" accept="image/*,image/jpeg" onChange={this.addPhoto} />
+                <button onClick={this.sendPhoto}>Send</button> */}
                 {
                     this.state.redirect===true &&
                     <Redirect to="/" />
                 }
-
             </div>
             
         )
