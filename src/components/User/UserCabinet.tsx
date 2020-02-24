@@ -1,4 +1,4 @@
-import { getUserInfo } from "../../services/User/UserCabinetService"
+import { getUserInfo, changeUserInfo } from "../../services/User/UserCabinetService"
 import * as React from "react";
 import { Redirect } from "react-router-dom";
 
@@ -11,7 +11,7 @@ interface ReceiveData{
     username: string,
     first_name: string,
     last_name: string,
-    email: string
+    email: string,
 }
 
 interface IRedirect{
@@ -27,8 +27,17 @@ export class UserCabinetComponent extends React.Component<UserCabinetProps, Rece
         first_name: "",
         last_name: "",
         email: "",
-        redirect: false
+        redirect: false,
     }
+
+    reader:FileReader
+
+    constructor(props: UserCabinetProps, state:  ReceiveData & IRedirect)
+    {
+        super(props, state);
+        this.reader = new FileReader();
+    }
+
     UNSAFE_componentWillMount(){
          getUserInfo(this.props.accessToken)
         .then(data => {
@@ -41,8 +50,28 @@ export class UserCabinetComponent extends React.Component<UserCabinetProps, Rece
         .catch(console.log)
     }
 
+    AddPhoto = (event: any) =>
+    {
+        event.preventDefault();
+        let file = event.target.files[0];
+        this.reader.readAsDataURL(file);
+    }
+
+    SendPhoto = (event: any) =>
+    {
+        if(this.reader.result)
+        {
+            let urlImage :string = this.reader.result as string
+            changeUserInfo({avatar: urlImage.split(",")[1]})
+            .then((data: any)=>console.log(data))
+            .catch((error: any) => console.log(error))
+            localStorage.removeItem("avatar");
+        }
+    }
+
     Handle = (e : any) => {
-        this.setState({[e.targe.name] : e.target.value} as any);
+        console.log(e.target.value);
+        this.setState({[e.target.name] : e.target.value} as any);
     }
 
     HandleClick = () => {
@@ -62,8 +91,8 @@ export class UserCabinetComponent extends React.Component<UserCabinetProps, Rece
                     <p>first_name: <input name="first_name" onChange={this.Handle} value={this.state.first_name}/></p>
                     <p>last_name: <input name="last_name" onChange={this.Handle} value={this.state.last_name} /></p>
                 </div>
-                {/* <input type="file" name="photo" accept="image/*,image/jpeg" onChange={this.addPhoto} />
-                <button onClick={this.sendPhoto}>Send</button> */}
+                <input type="file" name="photo" accept="image/*,image/jpeg" onChange={this.AddPhoto} />
+                <button onClick={this.SendPhoto}>Send</button>
                 {
                     this.state.redirect===true &&
                     <Redirect to="/" />

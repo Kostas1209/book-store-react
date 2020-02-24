@@ -27,15 +27,15 @@ export class UserAvatarComponent extends React.Component<UserAvatarProps, UserAv
            getUserAvatar()
             .then(data =>  
                 {
-                    console.log(this.state.image + data.data.image);
-                    this.setState({image : this.state.image + data.data.image});
-                    localStorage.setItem("avatar",data.data);
+                    console.log(data);
+                    this.setState({image : "data:image/jpeg;base64,"+ data.data.image});
+                    localStorage.setItem("avatar",data.data.image);
                 })
             .catch(console.log)
        }
        else {
            console.log("get from local storage");
-            this.setState({image : this.state.image + data});
+            this.setState({image : "data:image/jpeg;base64," + data});
        }
        
    }
