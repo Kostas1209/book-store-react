@@ -5,7 +5,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { makeStyles, Theme, createStyles } from "@material-ui/core";
-import { UserBasketItem } from "../types/BookCatalogState";
+import { UserBasketItem } from "../../types/BookCatalogState";
 import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme: Theme) =>

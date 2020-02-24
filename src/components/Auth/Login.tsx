@@ -1,5 +1,5 @@
 import * as React from "react";
-import { postLoginCredentials, LoginWithFaceBookService  } from "../services/LoginService";
+import { postLoginCredentials, LoginWithFaceBookService  } from "../../services/Auth/LoginService";
 import { Link, Redirect } from "react-router-dom";
 
 interface LoginProps{

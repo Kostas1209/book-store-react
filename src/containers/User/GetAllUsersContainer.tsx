@@ -1,7 +1,7 @@
-import { RootState } from "../redux/rootReducer";
-import { itemsAxiosData } from "../redux/GetAllUsers/actions";
+import { RootState } from "../../redux/rootReducer";
+import { itemsAxiosData } from "../../redux/GetAllUsers/actions";
 import { connect } from "react-redux";
-import { GetAllUsersComponent } from "../components/GetAllUsers";
+import { GetAllUsersComponent } from "../../components/User/GetAllUsers";
 
 
 const mapStateToProps = (state : RootState) => {

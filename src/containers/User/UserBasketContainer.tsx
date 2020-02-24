@@ -1,9 +1,9 @@
-import { RootState } from "../redux/rootReducer";
+import { RootState } from "../../redux/rootReducer";
 import { connect } from "react-redux";
-import UserBasketComponent from "../components/UserBasket";
+import UserBasketComponent from "../../components/User/UserBasket";
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
-import { DeleteBook } from "../redux/BookCatalog/actions";
+import { DeleteBook } from "../../redux/BookCatalog/actions";
 
 
 const mapStateToProps = (state : RootState) => ({

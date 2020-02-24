@@ -3,7 +3,7 @@ import { combineReducers } from "redux";
 import { UserBasketState } from "../types/BookCatalogState";
 import { Login, LoginReducer } from "./Login/reducer";
 import { itemsIsLoading, itemsHasError, items } from "./GetAllUsers/reducer";
-import { User } from "../components/GetAllUsers";
+import { User } from "../components/User/GetAllUsers";
 
 export interface RootState {
    reservedBooks: UserBasketState,

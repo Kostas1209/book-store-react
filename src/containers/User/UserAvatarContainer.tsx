@@ -1,6 +1,6 @@
-import { RootState } from "../redux/rootReducer";
+import { RootState } from "../../redux/rootReducer";
 import { connect } from "react-redux";
-import { UserCabinetComponent } from "../components/UserCabinet";
+import { UserAvatarComponent } from "../../components/User/UserAvatar";
 
 
  const mapStateToProps = (state : RootState) => ({
@@ -9,4 +9,4 @@ import { UserCabinetComponent } from "../components/UserCabinet";
 
 export default connect(
     mapStateToProps
-)(UserCabinetComponent);
+)(UserAvatarComponent);

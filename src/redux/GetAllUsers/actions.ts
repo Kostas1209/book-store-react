@@ -1,4 +1,4 @@
-import { User } from "../../components/GetAllUsers";
+import { User } from "../../components/User/GetAllUsers";
 import { AnyAction } from "redux";
 import { Dispatch } from "react";
 import axios from 'axios';

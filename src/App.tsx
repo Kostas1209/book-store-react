@@ -2,18 +2,18 @@ import React from 'react';
 import './App.css';
 import BookCatalogContainer from './containers/BookCatalogContainer';
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import { RegistrationComponent } from './components/Registration';
-import UserBasketContainer from './containers/UserBasketContainer';
-import LoginContainer from './containers/LoginContainer';
-import UserCabinetContainer from './containers/UserCabinetContainer';
-import UserAvatarContainer from './containers/UserAvatarContainer';
-import LogoutContainer from './containers/LogoutContainer';
+import { RegistrationComponent } from './components/Auth/Registration';
+import UserBasketContainer from './containers/User/UserBasketContainer';
+import LoginContainer from './containers/Auth/LoginContainer';
+import UserCabinetContainer from './containers/User/UserCabinetContainer';
+import UserAvatarContainer from './containers/User/UserAvatarContainer';
+import LogoutContainer from './containers/Auth/LogoutContainer';
 import axios from 'axios';
 import { store } from './redux/store';
 import { RootState } from './redux/rootReducer';
 import { SaveAccessToken, ChangeUserStatus, DeleteTokens } from './redux/Login/actions';
 import { Reset } from './redux/BookCatalog/actions';
-import GetAllUsersContainer from './containers/GetAllUsersContainer';
+import GetAllUsersContainer from './containers/User/GetAllUsersContainer';
 
 interface AppComponentProps{
    isLogin : boolean

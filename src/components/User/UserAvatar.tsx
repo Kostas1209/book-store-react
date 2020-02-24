@@ -1,7 +1,7 @@
 import Avatar from '@material-ui/core/Avatar';
 import React from 'react';
-import { getUserAvatar } from '../services/UserAvatarService';
-import "../styles/UserAvatar.scss";
+import { getUserAvatar } from '../../services/User/UserAvatarService';
+import "../../styles/UserAvatar.scss";
 import { Redirect } from 'react-router-dom';
 
 interface UserAvatarProps{

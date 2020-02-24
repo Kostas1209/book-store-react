@@ -1,5 +1,5 @@
 import * as React from "react";
-import { postRegistrationCredentials } from "../services/RegistrationService";
+import { postRegistrationCredentials } from "../../services/Auth/RegistrationService";
 import { Link } from "react-router-dom";
 
 interface RegistrationState{

@@ -1,8 +1,8 @@
 import { Dispatch } from "react";
-import { ChangeUserStatus, SaveAccessToken, SaveRefreshToken } from "../redux/Login/actions";
+import { ChangeUserStatus, SaveAccessToken, SaveRefreshToken } from "../../redux/Login/actions";
 import { AnyAction } from "redux";
 import { connect } from "react-redux";
-import { LoginComponent } from "../components/Login";
+import { LoginComponent } from "../../components/Auth/Login";
 
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>({
